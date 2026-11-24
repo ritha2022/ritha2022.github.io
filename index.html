@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Haritha A Sivanantham – Embedded Software Engineer, EV & Automotive</title>
+<meta name="description" content="Embedded software engineer with 3.5+ years in EV charging, battery management systems and automotive CAN networks. Embedded C, STM32, FreeRTOS, J1939.">
+<meta name="author" content="Haritha A Sivanantham">
+<link rel="canonical" href="https://ritha2022.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ritha2022.github.io/">
+<meta property="og:title" content="Haritha A Sivanantham – Embedded Software Engineer, EV &amp; Automotive">
+<meta property="og:description" content="3.5+ years of firmware for EV charging, battery management systems and automotive CAN. Resume, projects and contact in one place.">
+<meta property="og:image" content="https://ritha2022.github.io/preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%2313191C%22/><text x=%2250%22 y=%2266%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22monospace%22>HS</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4F6F7; --surface: #FFFFFF; --ink: #13191C; --muted: #59656D; --faint: #8A959C;
+    --line: #DCE2E5; --pcb: #0B6B57; --pcb-soft: #E1EFEA; --band: #13191C; --band-ink: #F1F5F6;
+    --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+    --shadow: 0 1px 2px rgba(19,25,28,.06), 0 8px 24px rgba(19,25,28,.06);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0E1315; --surface: #151C1F; --ink: #E7EDEF; --muted: #A0ACB3; --faint: #74818A;
+      --line: #263236; --pcb: #4CC6A6; --pcb-soft: #15302A; --band: #151C1F; --band-ink: #E7EDEF;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+      --bg: #0E1315; --surface: #151C1F; --ink: #E7EDEF; --muted: #A0ACB3; --faint: #74818A;
+      --line: #263236; --pcb: #4CC6A6; --pcb-soft: #15302A; --band: #151C1F; --band-ink: #E7EDEF;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+      color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  :root { box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  html { scroll-padding-top: calc(64px + env(safe-area-inset-top, 0px)); }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1.0625rem/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: var(--pcb); text-underline-offset: 3px; }
+  a:focus-visible, .btn:focus-visible { outline: 3px solid var(--pcb); outline-offset: 3px; border-radius: 6px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  /* Navigation */
+  .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 600; white-space: nowrap; }
+  .mono-mark { width: 34px; height: 34px; border-radius: 8px; background: var(--ink); color: var(--bg); display: grid; place-items: center; font: 600 .85rem var(--mono); }
+  .nav nav { display: flex; align-items: center; gap: 26px; font-size: .95rem; }
+  .nav nav a { color: var(--muted); text-decoration: none; }
+  .nav nav a:hover { color: var(--ink); }
+  .nav nav a.btn { color: var(--bg); }
+
+  button.btn { font-family: inherit; cursor: pointer; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 8px; font-weight: 500; font-size: .98rem; text-decoration: none; border: 1.5px solid var(--ink); color: var(--ink); background: transparent; transition: transform .15s ease; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn.primary { background: var(--ink); color: var(--bg); }
+  .btn.small { padding: 8px 14px; font-size: .9rem; }
+
+  /* Hero */
+  .hero { padding: 76px 0 56px; display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+  .status { display: inline-flex; align-items: center; gap: 8px; font-size: .9rem; color: var(--muted); background: var(--surface); border: 1px solid var(--line); padding: 6px 12px; border-radius: 999px; margin-bottom: 22px; }
+  .status i { width: 8px; height: 8px; border-radius: 50%; background: var(--pcb); box-shadow: 0 0 0 4px var(--pcb-soft); }
+  .hero .hello { margin: 0 0 4px; font-size: 1.2rem; color: var(--muted); }
+  .hero h1 { font-size: clamp(2.6rem, 6vw, 4.2rem); line-height: 1.02; font-weight: 700; letter-spacing: -0.03em; margin: 0 0 14px; }
+  .hero .title-line { margin: 0 0 18px; font-size: clamp(1.2rem, 2.2vw, 1.45rem); font-weight: 600; color: var(--pcb); line-height: 1.3; }
+  .hero .lead { font-size: 1.2rem; color: var(--muted); max-width: 44ch; margin: 0 0 30px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* Datasheet card: the profile read like a component datasheet */
+  .datasheet { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; }
+  .ds-head { padding: 18px 22px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .ds-head strong { font-size: 1.05rem; }
+  .ds-head span { font: 500 .8rem var(--mono); color: var(--faint); }
+  .datasheet dl { margin: 0; display: grid; grid-template-columns: 128px 1fr; }
+  .datasheet dt, .datasheet dd { padding: 12px 22px; border-bottom: 1px solid var(--line); margin: 0; font-size: .95rem; }
+  .datasheet dt { color: var(--faint); padding-right: 0; }
+  .datasheet dd { font-weight: 500; }
+  .datasheet dt:nth-last-of-type(1), .datasheet dd:last-child { border-bottom: none; }
+  .datasheet dd.ok { color: var(--pcb); }
+
+  /* CAN frame strip */
+  .frame-wrap { padding-bottom: 64px; }
+  .frame { display: flex; border: 1.5px solid var(--ink); border-radius: 10px; overflow: hidden; background: var(--surface); }
+  .frame > div { padding: 12px 16px; border-right: 1.5px solid var(--ink); font: 500 .9rem var(--mono); white-space: nowrap; }
+  .frame > div:last-child { border-right: none; }
+  .frame small { display: block; font: 400 .76rem var(--sans); color: var(--muted); margin-top: 2px; }
+  .frame .data { flex: 1; background: var(--pcb-soft); white-space: normal; }
+  .frame-note { margin: 10px 0 0; font-size: .9rem; color: var(--faint); }
+  @media (prefers-reduced-motion: no-preference) {
+    .frame > div { opacity: 0; animation: bit .4s ease-out forwards; }
+    .frame > div:nth-child(1){animation-delay:.15s} .frame > div:nth-child(2){animation-delay:.27s}
+    .frame > div:nth-child(3){animation-delay:.39s} .frame > div:nth-child(4){animation-delay:.51s}
+    .frame > div:nth-child(5){animation-delay:.63s} .frame > div:nth-child(6){animation-delay:.75s}
+    @keyframes bit { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+  }
+
+  /* Sections: title column + content column */
+  section.block { padding: 72px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 240px 1fr; gap: 40px; }
+  section.block { scroll-margin-top: 64px; }
+  section.block > header { position: sticky; top: 92px; align-self: start; }
+  section.block > header h2 { font-size: 1.55rem; font-weight: 600; letter-spacing: -0.015em; line-height: 1.2; margin: 0 0 8px; }
+  section.block > header p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+  .delivered { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .delivered li { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px; box-shadow: var(--shadow); }
+  .delivered .k { font: 600 1.55rem/1.1 var(--sans); letter-spacing: -0.02em; color: var(--pcb); margin: 0 0 10px; }
+  .delivered strong { display: block; font-weight: 600; margin-bottom: 6px; line-height: 1.35; }
+  .delivered p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+  .chain { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); }
+  .chain li { position: relative; padding: 0 18px 0 0; }
+  .chain .dot { display: block; width: 14px; height: 14px; border-radius: 50%; background: var(--pcb); box-shadow: 0 0 0 5px var(--pcb-soft); margin: 4px 0 18px 2px; position: relative; z-index: 1; }
+  .chain li::after { content: ""; position: absolute; top: 10px; left: 16px; right: 0; height: 2px; background: var(--pcb); opacity: .4; }
+  .chain li:last-child::after { display: none; }
+  .chain h3 { font-size: 1.02rem; font-weight: 600; margin: 0 0 6px; }
+  .chain p { margin: 0; font-size: .93rem; color: var(--muted); line-height: 1.5; }
+  .chain .where { display: block; margin-top: 10px; font-size: .84rem; color: var(--pcb); font-weight: 500; }
+
+  .prose { max-width: 66ch; } .prose p { margin: 0 0 16px; } .prose p:last-child { margin: 0; }
+
+  .roles { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+  .role { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
+  .role-top { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: baseline; }
+  .role h3 { font-size: 1.12rem; font-weight: 600; margin: 0; }
+  .role .when { font-size: .9rem; color: var(--faint); white-space: nowrap; }
+  .role .org { color: var(--pcb); font-weight: 500; margin: 2px 0 12px; }
+  .role ul { margin: 0; padding-left: 20px; } .role li { margin-bottom: 6px; } .role li:last-child { margin-bottom: 0; }
+
+  .skills { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .skill { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; }
+  .skill h3 { font-size: 1rem; font-weight: 600; margin: 0 0 12px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  .chips li { font-size: .88rem; padding: 5px 11px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); }
+
+  .projects { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .project { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px; display: flex; flex-direction: column; gap: 8px; }
+  .project h3 { font-size: 1.05rem; font-weight: 600; margin: 0; }
+  .project p { margin: 0; color: var(--muted); font-size: .95rem; flex: 1; }
+  .tag { align-self: flex-start; font-size: .8rem; font-weight: 500; padding: 3px 10px; border-radius: 999px; background: var(--pcb-soft); color: var(--pcb); }
+  .tag.planned { background: var(--bg); color: var(--muted); border: 1px solid var(--line); }
+
+  .edu p { margin: 0 0 12px; } .edu span { color: var(--muted); }
+
+  /* Contact band */
+  .band { background: var(--band); color: var(--band-ink); margin-top: 24px; }
+  .band .wrap { padding-top: 72px; padding-bottom: 72px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: center; }
+  .band h2 { font-size: clamp(1.8rem, 3.6vw, 2.5rem); line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 12px; font-weight: 700; }
+  .band p { margin: 0; color: color-mix(in srgb, var(--band-ink) 70%, transparent); }
+  .band .actions { justify-content: flex-end; }
+  .band .btn { border-color: var(--band-ink); color: var(--band-ink); }
+  .band .btn.primary { background: var(--band-ink); color: var(--band); }
+  footer.end { padding: 24px 0 40px; color: var(--faint); font-size: .9rem; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .band { border-top: 1px solid var(--line); } }
+  :root[data-theme="dark"] .band { border-top: 1px solid var(--line); }
+
+
+
+
+  /* Oscilloscope capture */
+  .scope { margin: 0; border-radius: 14px; overflow: hidden; background: #0B1113; border: 1px solid #1E2A2E; box-shadow: var(--shadow); color: #C9D4D8; }
+  .scope-bar { display: flex; flex-wrap: wrap; gap: 6px 20px; padding: 10px 16px; border-bottom: 1px solid #1E2A2E; font: 500 .78rem var(--mono); color: #8C9AA0; }
+  .scope-bar b { font-weight: 500; padding: 1px 6px; border-radius: 4px; margin-right: 4px; color: #0B1113; }
+  .scope-bar span:nth-child(1) b { background: #F0C75E; } .scope-bar span:nth-child(2) b { background: #6CC4E8; }
+  .scope-dec { margin-left: auto; color: #4CC6A6; }
+  .scope-screen { position: relative; cursor: crosshair; touch-action: pan-y; }
+  .scope-screen svg { display: block; width: 100%; height: 230px; }
+  .scope .grid line { stroke: #17262A; stroke-width: 1; }
+  .scope .grid line.axis { stroke: #22363B; }
+  .scope .tr { fill: none; stroke-width: 2; stroke-linejoin: round; }
+  .scope .tr.h { stroke: #F0C75E; } .scope .tr.l { stroke: #6CC4E8; }
+  .scope .seg { fill: #4CC6A6; opacity: .1; transition: opacity .15s ease; }
+  .scope .seg.alt { opacity: .05; }
+  .scope .seg.on { opacity: .26; }
+  .scope .lab { font: 500 10.5px var(--mono); fill: #8C9AA0; text-anchor: middle; pointer-events: none; }
+  .scope .lab.on { fill: #E7EDEF; }
+  .scope .stuff { fill: #E76F51; }
+  .scope .hl { fill: #4CC6A6; opacity: .14; pointer-events: none; transition: x .2s ease, width .2s ease; }
+  .scope-readout { display: flex; gap: 14px; align-items: baseline; padding: 12px 16px 14px; border-top: 1px solid #1E2A2E; min-height: 50px; }
+  .ro-field { flex: none; font: 600 .82rem var(--mono); color: #0B1113; background: #4CC6A6; padding: 2px 8px; border-radius: 4px; }
+  .ro-text { font-size: .95rem; color: #C9D4D8; }
+  @media (max-width: 680px) { .scope-screen svg { height: 200px; } .scope-bar span:nth-child(3), .scope-bar span:nth-child(4) { display: none; } }
+
+  /* Resume viewer */
+  .resume-view { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; }
+  .resume-tools { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+  .resume-name { font: 500 .85rem var(--mono); color: var(--muted); overflow-wrap: anywhere; }
+  .resume-pages { display: grid; gap: 18px; padding: 18px; background: color-mix(in srgb, var(--ink) 6%, var(--bg)); max-height: 820px; overflow-y: auto; }
+  .resume-pages img { display: block; width: 100%; height: auto; max-width: 760px; margin: 0 auto; background: #fff; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,.12); }
+  @media (max-width: 680px) { .resume-pages { padding: 10px; gap: 10px; max-height: 640px; } }
+
+  /* Profile cards */
+  .profile-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .pcard { display: flex; flex-direction: column; gap: 6px; padding: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; color: var(--ink); text-decoration: none; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+  .pcard:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--pcb) 45%, var(--line)); box-shadow: var(--shadow); }
+  .pcard-k { font: 500 .8rem var(--mono); color: var(--pcb); }
+  .pcard strong { font-weight: 600; overflow-wrap: anywhere; }
+  .pcard strong.pcard-mail { font-size: .88rem; letter-spacing: -0.01em; overflow-wrap: normal; white-space: nowrap; }
+  .pcard { padding: 20px 18px; }
+  .pcard-d { color: var(--muted); font-size: .93rem; flex: 1; }
+  .pcard-go { margin-top: 8px; font-weight: 500; color: var(--pcb); }
+  @media (max-width: 900px) { .profile-cards { grid-template-columns: 1fr; } }
+
+  /* Interactive CAN bus */
+  .bus-demo { display: grid; gap: 18px; }
+  .bus-stage { position: relative; height: 250px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden;
+    background-image: radial-gradient(color-mix(in srgb, var(--ink) 9%, transparent) 1px, transparent 1px); background-size: 18px 18px; }
+  .bus-stage svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .bus-stage .wire-h { stroke: var(--ink); stroke-width: 2.5; }
+  .bus-stage .wire-l { stroke: var(--muted); stroke-width: 2.5; }
+  .bus-stage .stub { stroke: var(--line); stroke-width: 2; }
+  .bus-stage .stub.on { stroke: var(--pcb); }
+  .bus-stage .term { fill: var(--surface); stroke: var(--ink); stroke-width: 1.5; }
+  .bus-stage .term-label, .bus-stage .wire-label { font: 500 11px var(--mono); fill: var(--faint); }
+  .bus-stage .pulse { fill: var(--pcb); }
+  .ecu { position: absolute; width: 132px; height: 58px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink);
+    font: 600 .95rem var(--sans); cursor: pointer; transition: border-color .2s ease, background .2s ease, transform .2s ease, box-shadow .2s ease; }
+  .ecu::before { content: ""; position: absolute; top: 8px; right: 8px; width: 7px; height: 7px; border-radius: 50%; background: var(--line); transition: background .15s ease, box-shadow .15s ease; }
+  .ecu:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--pcb) 50%, var(--line)); }
+  .ecu[aria-pressed="true"] { border-color: var(--pcb); background: var(--pcb-soft); box-shadow: 0 0 0 4px color-mix(in srgb, var(--pcb) 14%, transparent); }
+  .ecu.tx::before, .ecu.ack::before { background: var(--pcb); box-shadow: 0 0 0 4px color-mix(in srgb, var(--pcb) 25%, transparent); }
+  .ecu:focus-visible { outline: 3px solid var(--pcb); outline-offset: 3px; }
+  .ecu-panel { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--pcb); border-radius: 12px; padding: 22px 24px; min-height: 150px; }
+  .ecu-detail + .ecu-detail { margin-top: 18px; }
+  .js .ecu-detail + .ecu-detail { margin-top: 0; }
+  .ecu-where { margin: 0 0 4px; font-size: .88rem; color: var(--pcb); font-weight: 500; }
+  .ecu-detail h3 { margin: 0 0 8px; font-size: 1.15rem; font-weight: 600; }
+  .ecu-detail p { margin: 0 0 14px; color: var(--muted); }
+  .js .ecu-detail[hidden] { display: none; }
+  .js .ecu-detail.show { animation: panelIn .35s ease; }
+  @keyframes panelIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  /* ---------- Motion (only when JS is on and the visitor allows motion) ---------- */
+  .js .reveal, .js [data-hero] { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .js .reveal.in, .js [data-hero].in { opacity: 1; transform: none; }
+  .js .datasheet dt, .js .datasheet dd { opacity: 0; transition: opacity .45s ease, transform .45s ease; transform: translateX(-6px); }
+  .js .datasheet.in dt, .js .datasheet.in dd { opacity: 1; transform: none; }
+
+  .status i { animation: led 2.4s ease-in-out infinite; }
+  @keyframes led { 0%,100% { box-shadow: 0 0 0 3px var(--pcb-soft); } 50% { box-shadow: 0 0 0 7px transparent; } }
+
+  .frame { position: relative; }
+  .frame::after { content: ""; position: absolute; top: 0; bottom: 0; left: -80px; width: 80px; pointer-events: none;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--pcb) 22%, transparent), transparent);
+    animation: bus 5s ease-in-out 1.4s infinite; }
+  @keyframes bus { 0% { left: -80px; } 45% { left: 100%; } 100% { left: 100%; } }
+
+  .js .chain li::after { transform: scaleX(0); transform-origin: left center; transition: transform .7s ease; }
+  .js .chain .dot { transform: scale(.3); opacity: .3; transition: transform .45s cubic-bezier(.3,1.6,.5,1), opacity .45s ease; }
+  .js .chain.in .dot { transform: scale(1); opacity: 1; }
+  .js .chain.in li::after { transform: scaleX(1); }
+  .js .chain li:nth-child(1) .dot { transition-delay: .05s; } .js .chain li:nth-child(1)::after { transition-delay: .25s; }
+  .js .chain li:nth-child(2) .dot { transition-delay: .65s; } .js .chain li:nth-child(2)::after { transition-delay: .85s; }
+  .js .chain li:nth-child(3) .dot { transition-delay: 1.25s; } .js .chain li:nth-child(3)::after { transition-delay: 1.45s; }
+  .js .chain li:nth-child(4) .dot { transition-delay: 1.85s; }
+  @media (max-width: 680px) { .js .chain li::after { transform: scaleY(0); transform-origin: center top; } .js .chain.in li::after { transform: scaleY(1); } }
+
+  .delivered li, .role, .skill, .project { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, opacity .7s ease; }
+  .delivered li:hover, .role:hover, .skill:hover, .project:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--pcb) 45%, var(--line)); box-shadow: 0 2px 4px rgba(19,25,28,.06), 0 14px 32px rgba(19,25,28,.10); }
+  .chips li { transition: background .2s ease, border-color .2s ease; }
+  .chips li:hover { background: var(--pcb-soft); border-color: color-mix(in srgb, var(--pcb) 40%, var(--line)); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .status i, .frame::after { animation: none; }
+    .delivered li:hover, .role:hover, .skill:hover, .project:hover { transform: none; }
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 40px; padding-top: 52px; }
+    section.block { grid-template-columns: 1fr; gap: 20px; padding: 56px 0; }
+    section.block > header { position: static; }
+    .band .wrap { grid-template-columns: 1fr; } .band .actions { justify-content: flex-start; }
+  }
+  @media (max-width: 680px) {
+    .wrap { padding: 0 20px; }
+    .nav nav a:not(.btn) { display: none; }
+    .delivered, .skills, .projects { grid-template-columns: 1fr; }
+    .chain { grid-template-columns: 1fr; }
+    .chain li { padding: 0 0 24px 34px; }
+    .chain .dot { position: absolute; left: 0; top: 0; margin: 4px 0 0 2px; }
+    .chain li::after { top: 18px; left: 8px; right: auto; width: 2px; height: calc(100% - 8px); }
+    .frame { flex-wrap: wrap; }
+    .frame > div { flex: 1 0 auto; padding: 9px 10px; font-size: .78rem; border-bottom: 1.5px solid var(--ink); }
+    .frame .data { flex-basis: 100%; order: 6; border-right: none; border-bottom: none; }
+    .datasheet dl { grid-template-columns: 108px 1fr; }
+    .ds-head span { display: none; }
+    .datasheet dt, .datasheet dd { padding: 11px 16px; }
+  }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="mono-mark" aria-hidden="true">HS</span>Haritha A Sivanantham</a>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#profiles">Links</a>
+      <a class="btn primary small" href="#resume">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <span class="status" data-hero><i aria-hidden="true"></i>Open to automotive and EV roles</span>
+        <p class="hello" data-hero>Hi, I’m</p>
+        <h1 data-hero>Haritha A Sivanantham</h1>
+        <p class="title-line" data-hero>Embedded Software Engineer for EV &amp; Automotive</p>
+        <p class="lead" data-hero>I write the firmware that charges, monitors and protects electric vehicles, with 3.5+ years across EV charging, battery management systems and automotive CAN networks.</p>
+        <div class="actions" data-hero>
+          <a class="btn primary" href="#resume">View resume</a>
+          <a class="btn" href="https://github.com/ritha2022">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/haritha-a-sivanantham-586411182">LinkedIn</a>
+        </div>
+      </div>
+
+      <aside class="datasheet" data-hero aria-label="Profile summary">
+        <div class="ds-head"><strong>Profile at a glance</strong><span>Rev. 2026</span></div>
+        <dl>
+          <dt>Experience</dt><dd>3.5+ years in embedded firmware</dd>
+          <dt>Domains</dt><dd>EV charging, BMS, automotive CAN</dd>
+          <dt>Core stack</dt><dd>Embedded C, STM32, FreeRTOS</dd>
+          <dt>Networks</dt><dd>CAN, J1939, RS485, Modbus, LoRa</dd>
+          <dt>Growing into</dt><dd>UDS, secure boot, SecOC</dd>
+          <dt>Based in</dt><dd>Coimbatore, India</dd>
+          <dt>Status</dt><dd class="ok">Open to new roles</dd>
+        </dl>
+      </aside>
+    </div>
+
+    <div class="frame-wrap">
+      <figure class="scope" id="scope">
+        <div class="scope-bar">
+          <span><b>CH1</b> CANH</span><span><b>CH2</b> CANL</span><span>500 kbit/s</span><span>Trigger: SOF</span><span class="scope-dec">Decode: CAN</span>
+        </div>
+        <div class="scope-screen">
+          <svg id="scopeSvg" role="img" aria-label="Oscilloscope capture of a real CAN frame with ID 0x0F0 and 8 data bytes that spell HARITHA!"></svg>
+        </div>
+        <figcaption class="scope-readout" aria-live="polite">
+          <span class="ro-field" id="roField">DATA</span>
+          <span class="ro-text" id="roText">48 41 52 49 54 48 41 21, which is ASCII for “HARITHA!”</span>
+        </figcaption>
+      </figure>
+      <p class="frame-note">A real CAN frame, bit for bit: ID 0x0F0, eight data bytes that spell my name, a valid CRC and its stuff bits. Hover or tap the trace to decode it.</p>
+    </div>
+
+    <section class="block" id="work">
+      <header><h2>What I’ve delivered</h2><p>Results from shipped products.</p></header>
+      <ul class="delivered">
+        <li><p class="k">LECCS</p><strong>EV charging stack for Ather Energy’s standard</strong><p>Built the EVSE–SECC communication stack for the Type 7 connector, meeting conformance and interoperability requirements.</p></li>
+        <li><p class="k" data-count="65" data-suffix="% faster">65% faster</p><strong>Anti-lock braking response</strong><p>Cut sensor-to-actuator latency in an ABS by moving its data path onto CAN.</p></li>
+        <li><p class="k" data-count="500" data-suffix=" ms">500 ms</p><strong>Deterministic DC fast-charger control</strong><p>STM32 rectifier firmware with CAN integration, processing data on a fixed schedule.</p></li>
+        <li><p class="k">Airport</p><strong>Hyderabad Airport monitoring</strong><p>Perimeter intrusion system integration, plus a LoRa runway status link to a server over MQTT and REST.</p></li>
+      </ul>
+    </section>
+
+    <section class="block" id="ev-path">
+      <header><h2>Explore my work on an EV network</h2><p>Tap an ECU to see what I built for it. Frames on this bus are broadcast to every node, just like real CAN.</p></header>
+      <div class="bus-demo">
+        <div class="bus-stage" id="busStage">
+          <svg id="busSvg" aria-hidden="true"></svg>
+          <button type="button" class="ecu" data-i="0" aria-pressed="false" aria-controls="ecu-d0">DC charger</button>
+          <button type="button" class="ecu" data-i="1" aria-pressed="true" aria-controls="ecu-d1">Charging link</button>
+          <button type="button" class="ecu" data-i="2" aria-pressed="false" aria-controls="ecu-d2">Battery</button>
+          <button type="button" class="ecu" data-i="3" aria-pressed="false" aria-controls="ecu-d3">ABS</button>
+          <button type="button" class="ecu" data-i="4" aria-pressed="false" aria-controls="ecu-d4">Cluster</button>
+        </div>
+        <div class="ecu-panel" aria-live="polite">
+        <div class="ecu-detail" id="ecu-d0">
+          <p class="ecu-where">Charge Mod</p>
+          <h3>Rectifier control firmware</h3>
+          <p>STM32 firmware that controls the rectifier in DC fast chargers, with CAN integration and a deterministic 500 ms processing cycle.</p>
+          <ul class="chips"><li>STM32</li><li>CAN</li><li>DC fast charging</li></ul>
+        </div>
+        <div class="ecu-detail" id="ecu-d1">
+          <p class="ecu-where">Charge Mod, with Ather Energy</p>
+          <h3>LECCS charging communication</h3>
+          <p>The EVSE–SECC communication stack for Ather Energy’s LECCS standard (Type 7 connector), meeting conformance and interoperability requirements.</p>
+          <ul class="chips"><li>LECCS</li><li>EVSE</li><li>SECC</li></ul>
+        </div>
+        <div class="ecu-detail" id="ecu-d2">
+          <p class="ecu-where">Charge Mod, Pinnacle Lithium Power</p>
+          <h3>Battery management and charging</h3>
+          <p>A FreeRTOS task architecture for multi-cell battery data, and a CAN-based Li-ion charger that predicts charge completion time with 85% accuracy.</p>
+          <ul class="chips"><li>FreeRTOS</li><li>BMS</li><li>CAN</li></ul>
+        </div>
+        <div class="ecu-detail" id="ecu-d3">
+          <p class="ecu-where">Pinnacle Lithium Power</p>
+          <h3>Anti-lock braking communication</h3>
+          <p>CAN communication for an anti-lock braking system that cut sensor-to-actuator latency by 65%.</p>
+          <ul class="chips"><li>CAN</li><li>Real-time</li><li>Braking</li></ul>
+        </div>
+        <div class="ecu-detail" id="ecu-d4">
+          <p class="ecu-where">Pinnacle Lithium Power</p>
+          <h3>Instrument cluster interface</h3>
+          <p>The driver information system interface showing speed, fuel level, temperature and warning indicators.</p>
+          <ul class="chips"><li>CAN</li><li>Display</li><li>Diagnostics</li></ul>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="about">
+      <header><h2>About</h2></header>
+      <div class="prose">
+        <p>I build firmware for electric vehicles and their chargers: the charging communication stack for Ather Energy’s LECCS standard, rectifier control for DC fast chargers, FreeRTOS software for battery management systems, and CAN software for anti-lock braking.</p>
+        <p>I’m now specialising in automotive embedded security: UDS bootloaders, secure boot and authenticated CAN communication. My projects below are where I build and test that work in public.</p>
+      </div>
+    </section>
+
+    <section class="block" id="experience">
+      <header><h2>Experience</h2><p>Most recent first.</p></header>
+      <ol class="roles">
+        <li class="role">
+          <div class="role-top"><h3>Senior Embedded Software Engineer</h3><span class="when">Dec 2025 – Present</span></div>
+          <p class="org">Chozhawin Technology, Pondicherry</p>
+          <ul>
+            <li>Integrated IP cameras, sonar sensors and Raspberry Pi into a Perimeter Intrusion Detection system for Hyderabad Airport</li>
+            <li>Designed the Runway Information Monitor: LoRa end nodes send runway status through a gateway to a server using MQTT and HTTP POST API calls with JSON payloads</li>
+            <li>Developed marine motor-control firmware that adjusts motor power in real time from current, power, voltage and motion sensors</li>
+            <li>Built a current and power monitoring module for navigation platforms</li>
+          </ul>
+        </li>
+        <li class="role">
+          <div class="role-top"><h3>R&amp;D Engineer, Embedded Software (EV Charging)</h3><span class="when">Jul 2024 – Nov 2025</span></div>
+          <p class="org">Charge Mod, Trivandrum</p>
+          <ul>
+            <li>Developed the EVSE–SECC communication stack for the LECCS charging standard (Type 7 connector) under Ather Energy’s technical governance</li>
+            <li>Wrote STM32 rectifier control firmware for DC fast chargers with CAN integration and a deterministic 500 ms processing cycle</li>
+            <li>Designed a FreeRTOS task architecture for a battery management system with real-time interrupt handling</li>
+            <li>Built an RS485 layer on Raspberry Pi 4 that collects live charging data for dynamic load sharing</li>
+          </ul>
+        </li>
+        <li class="role">
+          <div class="role-top"><h3>R&amp;D Engineer, Automotive Embedded Software</h3><span class="when">Feb 2023 – May 2024</span></div>
+          <p class="org">Pinnacle Lithium Power, Coimbatore</p>
+          <ul>
+            <li>Implemented CAN communication for an anti-lock braking system, cutting sensor-to-actuator latency by 65%</li>
+            <li>Integrated a CAN-based Li-ion charger that predicts charge completion time with 85% accuracy</li>
+            <li>Developed the instrument cluster interface and a smart battery data logger with low-power design</li>
+          </ul>
+        </li>
+        <li class="role">
+          <div class="role-top"><h3>Automotive Embedded Software Intern</h3><span class="when">Nov 2022 – Feb 2023</span></div>
+          <p class="org">Smart Cliff, Coimbatore</p>
+          <ul><li>Built a GPS and RTC data pipeline for a vehicle information system, improving telemetry throughput by 40%</li></ul>
+        </li>
+      </ol>
+    </section>
+
+    <section class="block" id="skills">
+      <header><h2>Skills</h2><p>What I use day to day.</p></header>
+      <div class="skills">
+        <div class="skill"><h3>Automotive and EV</h3><ul class="chips"><li>CAN</li><li>J1939</li><li>BMS</li><li>EVSE / SECC</li><li>LECCS</li><li>DC fast charging</li><li>ABS</li><li>Instrument cluster</li></ul></div>
+        <div class="skill"><h3>Embedded software</h3><ul class="chips"><li>Embedded C</li><li>C++</li><li>FreeRTOS</li><li>Interrupt handling</li><li>Unit and integration testing</li><li>ASPICE</li></ul></div>
+        <div class="skill"><h3>Microcontrollers</h3><ul class="chips"><li>STM32 (Cortex-M)</li><li>Renesas RL78</li><li>PIC16F</li><li>TI CC3200</li><li>Raspberry Pi 4</li></ul></div>
+        <div class="skill"><h3>Connectivity and security</h3><ul class="chips"><li>RS485</li><li>Modbus RTU</li><li>UART / I2C / SPI</li><li>LoRa</li><li>MQTT</li><li>REST APIs</li><li>AES-128</li></ul></div>
+      </div>
+    </section>
+
+    <section class="block" id="projects">
+      <header><h2>Projects</h2><p>Open source, built to go deeper into automotive security.</p></header>
+      <ul class="projects">
+        <li class="project"><span class="tag">In progress</span><h3>CAN FD lab on STM32</h3><p>Two STM32 nodes on CAN FD, with experiments that force error passive and bus-off, then recover in software.</p></li>
+        <li class="project"><span class="tag planned">Planned</span><h3>UDS bootloader over CAN</h3><p>An STM32 bootloader that a PC tester flashes over CAN using UDS and ISO-TP, with security access.</p></li>
+        <li class="project"><span class="tag planned">Planned</span><h3>Secure boot with signed firmware</h3><p>ECDSA-signed images with rollback protection, so only trusted firmware runs.</p></li>
+        <li class="project"><span class="tag planned">Planned</span><h3>Authenticated CAN (SecOC-style)</h3><p>CAN messages protected with AES-CMAC and freshness counters, tested against spoofing and replay.</p></li>
+      </ul>
+    </section>
+
+    <section class="block" id="resume">
+      <header><h2>Resume</h2><p>Two pages. Read it here, or open the PDF to save a copy.</p></header>
+      <div class="resume-view">
+        <div class="resume-tools">
+          <span class="resume-name">Haritha_Sivanantham_Embedded_Software_Engineer.pdf</span>
+          <span style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn small" href="resume.pdf" target="_blank" rel="noopener">Open PDF</a><a class="btn small primary" href="resume.pdf" download="Haritha_Sivanantham_Embedded_Software_Engineer.pdf">Download PDF</a></span>
+        </div>
+        <div class="resume-pages">
+          <img src="resume-page-1.png" width="1075" height="1520" loading="lazy" alt="Resume, page 1 of 2: summary, career highlights, skills and current experience">
+          <img src="resume-page-2.png" width="1075" height="1520" loading="lazy" alt="Resume, page 2 of 2: earlier experience, education and additional information">
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="profiles">
+      <header><h2>Find me online</h2><p>Everything else, one tap away.</p></header>
+      <div class="profile-cards">
+        <a class="pcard" href="https://github.com/ritha2022" target="_blank" rel="noopener"><span class="pcard-k">GitHub</span><strong>github.com/ritha2022</strong><span class="pcard-d">My CAN FD lab, automotive security notes, and the bootloader and secure boot projects as I build them.</span><span class="pcard-go">Open GitHub</span></a>
+        <a class="pcard" href="https://www.linkedin.com/in/haritha-a-sivanantham-586411182" target="_blank" rel="noopener"><span class="pcard-k">LinkedIn</span><strong>Haritha A Sivanantham</strong><span class="pcard-d">My work history and posts about what I’m learning in automotive security.</span><span class="pcard-go">Open LinkedIn</span></a>
+        <a class="pcard" href="mailto:harisaistriker@gmail.com"><span class="pcard-k">Email</span><strong class="pcard-mail">harisaistriker@gmail.com</strong><span class="pcard-d">The fastest way to reach me about a role.</span><span class="pcard-go">Write to me</span></a>
+      </div>
+    </section>
+
+    <section class="block edu" id="education">
+      <header><h2>Education</h2></header>
+      <div>
+        <p><strong>M.Sc. Applied Electronics</strong><br><span>PSG College of Arts and Science, Coimbatore</span></p>
+        <p><strong>B.Sc. Physics</strong><br><span>Vellalar College for Women, Erode</span></p>
+      </div>
+    </section>
+  </div>
+
+  <section class="band" id="contact">
+    <div class="wrap">
+      <div>
+        <h2>Building EV or automotive firmware? Let’s talk.</h2>
+        <p>Open to embedded software roles in automotive, EV and embedded security. Email is the fastest way to reach me.</p>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="mailto:harisaistriker@gmail.com">Email me</a>
+        <a class="btn" href="https://www.linkedin.com/in/haritha-a-sivanantham-586411182">LinkedIn</a>
+        <a class="btn" href="https://github.com/ritha2022">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="end"><div class="wrap">Haritha A Sivanantham, Coimbatore, Tamil Nadu, India</div></footer>
+
+<script>
+(function () {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('js');
+
+  // Hero: staggered entrance, then the datasheet rows "print" one by one
+  var hero = Array.prototype.slice.call(document.querySelectorAll('[data-hero]'));
+  hero.forEach(function (el, i) { el.style.transitionDelay = (0.09 * i) + 's'; });
+  var rows = document.querySelectorAll('.datasheet dt, .datasheet dd');
+  Array.prototype.forEach.call(rows, function (el, i) { el.style.transitionDelay = (0.75 + 0.06 * Math.floor(i / 2)) + 's'; });
+  requestAnimationFrame(function () { requestAnimationFrame(function () {
+    hero.forEach(function (el) { el.classList.add('in'); });
+  }); });
+
+  // Scroll reveals: section titles, cards (staggered within each group), the EV path
+  var targets = [];
+  document.querySelectorAll('section.block > header, .frame-wrap, .prose, .edu > div, .band .wrap').forEach(function (el) { targets.push(el); });
+  ['.delivered li', '.roles .role', '.skills .skill', '.projects .project'].forEach(function (sel) {
+    Array.prototype.forEach.call(document.querySelectorAll(sel), function (el, i) { el.style.transitionDelay = (0.08 * i) + 's'; targets.push(el); });
+  });
+  targets.forEach(function (el) { el.classList.add('reveal'); });
+  targets.push(document.querySelector('.chain'));
+
+  function countUp(el) {
+    var end = +el.getAttribute('data-count'), suffix = el.getAttribute('data-suffix') || '', t0 = null;
+    function step(t) {
+      if (!t0) t0 = t;
+      var p = Math.min((t - t0) / 1200, 1), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(end * e) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    el.textContent = '0' + suffix;
+    requestAnimationFrame(step);
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      el.classList.add('in');
+      // After the reveal, hand the element back to its normal hover transitions
+      if (el.classList.contains('reveal')) {
+        var d = parseFloat(el.style.transitionDelay || '0') * 1000;
+        setTimeout(function () { el.style.transitionDelay = ''; el.classList.remove('reveal', 'in'); }, 900 + d);
+      }
+      var c = el.querySelector && el.querySelector('[data-count]');
+      if (c) setTimeout(function () { countUp(c); }, 250);
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  targets.forEach(function (el) { if (el) io.observe(el); });
+})();
+</script>
+
+<script>
+(function () {
+  var stage = document.getElementById('busStage');
+  if (!stage) return;
+  var svg = document.getElementById('busSvg'), NS = 'http://www.w3.org/2000/svg';
+  var ecus = Array.prototype.slice.call(stage.querySelectorAll('.ecu'));
+  var details = ecus.map(function (b) { return document.getElementById(b.getAttribute('aria-controls')); });
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var selected = 1, layout = null, pulses = [], stubs = [], lastSpawn = 0, spawnFrom = 0;
+
+  function select(i, focus) {
+    selected = i;
+    ecus.forEach(function (b, k) { b.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
+    details.forEach(function (d, k) { d.hidden = k !== i; d.classList.toggle('show', k === i); });
+    stubs.forEach(function (st, k) { st.classList.toggle('on', k === i); });
+    if (!reduce) spawn(i, performance.now());
+  }
+  ecus.forEach(function (b, i) { b.addEventListener('click', function () { select(i); }); });
+  stage.addEventListener('keydown', function (e) {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft' && e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+    e.preventDefault();
+    var n = (selected + (e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : ecus.length - 1)) % ecus.length;
+    select(n); ecus[n].focus();
+  });
+
+  function el(name, attrs) { var e = document.createElementNS(NS, name); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
+
+  function build() {
+    var W = stage.clientWidth, vertical = W < 680, n = ecus.length;
+    var H = vertical ? 40 + n * 78 : 250;
+    stage.style.height = H + 'px';
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    stubs = []; pulses.forEach(function (p) { p.a.remove(); p.b.remove(); }); pulses = [];
+    var pos = [];
+    if (!vertical) {
+      var yH = 178, yL = 190, x0 = 34, x1 = W - 34;
+      var gap = (x1 - x0 - 140) / (n - 1), bw = Math.min(140, gap - 18);
+      ecus.forEach(function (b, i) {
+        var cx = x0 + 70 + i * ((x1 - x0 - 140) / (n - 1));
+        b.style.left = (cx - bw / 2) + 'px'; b.style.top = '42px'; b.style.width = bw + 'px';
+        pos.push(cx);
+        var st = el('line', { x1: cx, y1: 100, x2: cx, y2: yH, 'class': 'stub' }); svg.appendChild(st); stubs.push(st);
+      });
+      svg.appendChild(el('line', { x1: x0, y1: yH, x2: x1, y2: yH, 'class': 'wire-h' }));
+      svg.appendChild(el('line', { x1: x0, y1: yL, x2: x1, y2: yL, 'class': 'wire-l' }));
+      [x0 - 8, x1 - 8].forEach(function (x) { svg.appendChild(el('rect', { x: x, y: yH - 4, width: 16, height: yL - yH + 8, rx: 3, 'class': 'term' })); });
+      var t1 = el('text', { x: x0 - 10, y: yL + 26, 'class': 'term-label' }); t1.textContent = '120 Ω'; svg.appendChild(t1);
+      var t2 = el('text', { x: x1 - 26, y: yL + 26, 'class': 'term-label' }); t2.textContent = '120 Ω'; svg.appendChild(t2);
+      var wl = el('text', { x: W / 2 - 52, y: yL + 26, 'class': 'wire-label' }); wl.textContent = 'CANH / CANL'; svg.appendChild(wl);
+      layout = { vertical: false, a: x0, b: x1, pos: pos, c1: yH, c2: yL };
+    } else {
+      var xH = 30, xL = 42, y0 = 18, y1 = H - 18, left = 74;
+      ecus.forEach(function (b, i) {
+        var cy = 20 + 39 + i * 78 - 0;
+        b.style.left = left + 'px'; b.style.top = (cy - 29) + 'px'; b.style.width = (W - left - 16) + 'px';
+        pos.push(cy);
+        var st = el('line', { x1: xL, y1: cy, x2: left, y2: cy, 'class': 'stub' }); svg.appendChild(st); stubs.push(st);
+      });
+      svg.appendChild(el('line', { x1: xH, y1: y0, x2: xH, y2: y1, 'class': 'wire-h' }));
+      svg.appendChild(el('line', { x1: xL, y1: y0, x2: xL, y2: y1, 'class': 'wire-l' }));
+      [y0 - 8, y1 - 8].forEach(function (y) { svg.appendChild(el('rect', { x: xH - 4, y: y, width: xL - xH + 8, height: 16, rx: 3, 'class': 'term' })); });
+      layout = { vertical: true, a: y0, b: y1, pos: pos, c1: xH, c2: xL };
+    }
+    stubs.forEach(function (st, k) { st.classList.toggle('on', k === selected); });
+  }
+
+  function spawn(i, now) {
+    var mk = function () { return el('rect', { 'class': 'pulse', rx: 2, opacity: .85 }); };
+    var p = { src: i, t0: now, a: mk(), b: mk(), acked: {} };
+    svg.appendChild(p.a); svg.appendChild(p.b); pulses.push(p);
+    ecus[i].classList.add('tx'); setTimeout(function () { ecus[i].classList.remove('tx'); }, 300);
+  }
+
+  function place(r, c) {
+    var L = 30, T = 4;
+    if (!layout.vertical) { r.setAttribute('x', c - L / 2); r.setAttribute('y', layout.c1 - T / 2 + (layout.c2 - layout.c1) / 2 - 4); r.setAttribute('width', L); r.setAttribute('height', T + 8); }
+    else { r.setAttribute('y', c - L / 2); r.setAttribute('x', layout.c1 - T / 2 + (layout.c2 - layout.c1) / 2 - 4); r.setAttribute('height', L); r.setAttribute('width', T + 8); }
+  }
+
+  function tick(now) {
+    if (now - lastSpawn > 1700) {
+      lastSpawn = now;
+      var src = Math.random() < 0.5 ? selected : spawnFrom;
+      spawnFrom = (spawnFrom + 1) % ecus.length;
+      spawn(src, now);
+    }
+    var v = 0.38; // px per ms
+    pulses = pulses.filter(function (p) {
+      var d = (now - p.t0) * v, origin = layout.pos[p.src];
+      var lo = origin - d, hi = origin + d;
+      place(p.a, Math.max(lo, layout.a)); place(p.b, Math.min(hi, layout.b));
+      var fade = Math.max(0, 1 - Math.max(0, d - 120) / 900);
+      p.a.setAttribute('opacity', (lo > layout.a ? .85 : 0) * fade); p.b.setAttribute('opacity', (hi < layout.b ? .85 : 0) * fade);
+      layout.pos.forEach(function (x, k) {
+        if (k !== p.src && !p.acked[k] && (Math.abs(x - lo) < 8 || Math.abs(x - hi) < 8)) {
+          p.acked[k] = 1; ecus[k].classList.add('ack'); setTimeout(function () { ecus[k].classList.remove('ack'); }, 220);
+        }
+      });
+      if (lo <= layout.a && hi >= layout.b) { p.a.remove(); p.b.remove(); return false; }
+      return true;
+    });
+    requestAnimationFrame(tick);
+  }
+
+  build();
+  select(selected);
+  var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(build, 150); });
+  if (!reduce) requestAnimationFrame(tick);
+})();
+</script>
+
+<script>
+(function () {
+  var svg = document.getElementById('scopeSvg'); if (!svg) return;
+  var NS = 'http://www.w3.org/2000/svg';
+  var F = {"crc":"0x6F22","bits":[[0,"SOF",0],[0,"ID",0],[0,"ID",0],[0,"ID",0],[1,"ID",0],[1,"ID",0],[1,"ID",0],[1,"ID",0],[0,"ID",0],[0,"ID",0],[0,"ID",0],[0,"ID",0],[0,"RTR",0],[1,"RTR",1],[0,"IDE",0],[0,"r0",0],[1,"DLC",0],[0,"DLC",0],[0,"DLC",0],[0,"DLC",0],[0,"DATA",0],[1,"DATA",0],[0,"DATA",0],[0,"DATA",0],[1,"DATA",0],[0,"DATA",0],[0,"DATA",0],[0,"DATA",0],[0,"DATA",0],[1,"DATA",0],[0,"DATA",0],[0,"DATA",0],[0,"DATA",0],[0,"DATA",0],[0,"DATA",0],[1,"DATA",1],[1,"DATA",0],[0,"DATA",0],[1,"DATA",0],[0,"DATA",0],[1,"DATA",0],[0,"DATA",0],[0,"DATA",0],[1,"DATA",0],[0,"DATA",0],[0,"DATA",0],[1,"DATA",0],[0,"DATA",0],[0,"DATA",0],[1,"DATA",0],[0,"DATA",0],[0,"DATA",0],[1,"DATA",0],[0,"DATA",0],[1,"DATA",0],[0,"DATA",0],[1,"DATA",0],[0,"DATA",0],[1,"DATA",0],[0,"DATA",0],[0,"DATA",0],[0,"DATA",0],[1,"DATA",0],[0,"DATA",0],[0,"DATA",0],[1,"DATA",0],[0,"DATA",0],[0,"DATA",0],[0,"DATA",0],[0,"DATA",0],[1,"DATA",0],[0,"DATA",0],[0,"DATA",0],[0,"DATA",0],[0,"DATA",0],[0,"DATA",0],[1,"DATA",1],[1,"DATA",0],[0,"DATA",0],[0,"DATA",0],[1,"DATA",0],[0,"DATA",0],[0,"DATA",0],[0,"DATA",0],[0,"DATA",0],[1,"DATA",0],[1,"CRC",0],[1,"CRC",0],[0,"CRC",0],[1,"CRC",0],[1,"CRC",0],[1,"CRC",0],[1,"CRC",0],[0,"CRC",0],[0,"CRC",0],[1,"CRC",0],[0,"CRC",0],[0,"CRC",0],[0,"CRC",0],[1,"CRC",0],[0,"CRC",0],[1,"CRC delimiter",0],[0,"ACK",0],[1,"ACK delimiter",0],[1,"EOF",0],[1,"EOF",0],[1,"EOF",0],[1,"EOF",0],[1,"EOF",0],[1,"EOF",0],[1,"EOF",0]]};
+  var info = {
+    'SOF': 'Start of frame: one dominant bit that wakes and synchronises every node.',
+    'ID': '11-bit identifier 0x0F0. A low ID means high priority: it wins arbitration against any higher ID.',
+    'RTR': 'Dominant RTR: this is a data frame, not a remote request.',
+    'IDE': 'Dominant IDE: a standard 11-bit identifier.',
+    'r0': 'Reserved bit, sent dominant.',
+    'DLC': 'Data length code 8: eight data bytes follow.',
+    'DATA': '48 41 52 49 54 48 41 21, which is ASCII for “HARITHA!”',
+    'CRC': '15-bit checksum ' + F.crc + ', calculated over every bit from SOF to the last data bit.',
+    'CRC delimiter': 'Recessive delimiter after the CRC.',
+    'ACK': 'A receiver drove this bit dominant: the frame arrived correctly.',
+    'ACK delimiter': 'Recessive delimiter after the ACK slot.',
+    'EOF': 'End of frame: seven recessive bits.',
+    'stuff': 'Stuff bit: inserted after five identical bits so receivers stay synchronised.'
+  };
+  var short = { 'CRC delimiter': 'D', 'ACK delimiter': 'D', 'ACK': 'A' };
+  var IDLE = 5, bits = F.bits, N = bits.length + IDLE * 2;
+  var roF = document.getElementById('roField'), roT = document.getElementById('roText');
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var segs = [], hl, W, H, x0, bw, touched = false, current = 'DATA';
+
+  // Group bits into fields
+  var groups = []; bits.forEach(function (b, i) {
+    var g = groups[groups.length - 1];
+    if (!g || g.name !== b[1]) groups.push({ name: b[1], a: i, b: i }); else g.b = i;
+  });
+
+  function el(n, a) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
+
+  function draw() {
+    W = svg.clientWidth; H = svg.clientHeight; svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    x0 = 12; bw = (W - 24) / N;
+    var plotH = H - 46, v2y = function (v) { return 14 + (4.2 - v) / 3.4 * (plotH - 14); };
+    var g = el('g', { 'class': 'grid' });
+    for (var i = 1; i < 10; i++) g.appendChild(el('line', { x1: W * i / 10, y1: 0, x2: W * i / 10, y2: plotH, 'class': i === 5 ? 'axis' : '' }));
+    for (var j = 1; j < 6; j++) g.appendChild(el('line', { x1: 0, y1: plotH * j / 6, x2: W, y2: plotH * j / 6, 'class': j === 3 ? 'axis' : '' }));
+    svg.appendChild(g);
+
+    // Field band
+    segs = [];
+    groups.forEach(function (gp, k) {
+      var x = x0 + (IDLE + gp.a) * bw, w = (gp.b - gp.a + 1) * bw;
+      var r = el('rect', { x: x, y: plotH + 6, width: Math.max(w - 1, 1), height: 26, rx: 3, 'class': 'seg' + (k % 2 ? ' alt' : '') });
+      svg.appendChild(r);
+      var name = short[gp.name] || gp.name, t = null;
+      if (w > name.length * 7 + 4) { t = el('text', { x: x + w / 2, y: plotH + 23, 'class': 'lab' }); t.textContent = name; svg.appendChild(t); }
+      segs.push({ name: gp.name, r: r, t: t, x: x, w: w });
+    });
+    hl = el('rect', { x: 0, y: 0, width: 0, height: plotH, 'class': 'hl' }); svg.appendChild(hl);
+
+    // Traces
+    var seq = []; for (var a = 0; a < IDLE; a++) seq.push(1);
+    bits.forEach(function (b) { seq.push(b[0]); }); for (var c = 0; c < IDLE; c++) seq.push(1);
+    function path(hiV, loV) {
+      var d = '', y, prev = null;
+      seq.forEach(function (b, i) {
+        y = v2y(b ? 2.5 : hiV === 'h' ? 3.5 : 1.5); var x = x0 + i * bw;
+        d += (i === 0 ? 'M' + x + ' ' + y : (prev !== y ? ' L' + x + ' ' + prev + ' L' + x + ' ' + y : '')) ; prev = y;
+      });
+      return d + ' L' + (x0 + N * bw) + ' ' + prev;
+    }
+    var ph = el('path', { d: path('h'), 'class': 'tr h', pathLength: 1 }), pl = el('path', { d: path('l'), 'class': 'tr l', pathLength: 1 });
+    svg.appendChild(pl); svg.appendChild(ph);
+    // Stuff-bit markers
+    bits.forEach(function (b, i) { if (b[2]) svg.appendChild(el('rect', { x: x0 + (IDLE + i) * bw + bw * 0.2, y: plotH + 1, width: Math.max(bw * 0.6, 2), height: 4, rx: 1, 'class': 'stuff' })); });
+    if (!reduce && !draw.done) {
+      [ph, pl].forEach(function (p) { p.style.strokeDasharray = 1; p.style.strokeDashoffset = 1; });
+      var io = new IntersectionObserver(function (en) {
+        if (!en[0].isIntersecting) return; io.disconnect(); draw.done = true;
+        [ph, pl].forEach(function (p) { p.style.transition = 'stroke-dashoffset 2.2s cubic-bezier(.4,.1,.3,1)'; requestAnimationFrame(function () { p.style.strokeDashoffset = 0; }); });
+      }, { threshold: 0.3 });
+      io.observe(svg);
+    }
+    show(current);
+  }
+
+  function show(name, stuffIdx) {
+    current = name;
+    segs.forEach(function (s) { var on = s.name === name; s.r.classList.toggle('on', on); if (s.t) s.t.classList.toggle('on', on); });
+    var s = segs.filter(function (q) { return q.name === name; })[0];
+    if (stuffIdx != null) { hl.setAttribute('x', x0 + (IDLE + stuffIdx) * bw); hl.setAttribute('width', bw); }
+    else if (s) { hl.setAttribute('x', s.x); hl.setAttribute('width', s.w); }
+    roF.textContent = stuffIdx != null ? 'STUFF' : name.toUpperCase();
+    roT.textContent = info[stuffIdx != null ? 'stuff' : name] || '';
+  }
+
+  function at(clientX) {
+    var r = svg.getBoundingClientRect(), i = Math.floor(((clientX - r.left) / r.width * W - x0) / bw) - IDLE;
+    if (i < 0 || i >= bits.length) return;
+    touched = true;
+    if (bits[i][2]) show(bits[i][1], i); else show(bits[i][1]);
+  }
+  svg.addEventListener('pointermove', function (e) { at(e.clientX); });
+  svg.addEventListener('pointerdown', function (e) { at(e.clientX); });
+
+  // Gentle auto-tour of the fields until the visitor interacts
+  if (!reduce) {
+    var tour = ['SOF', 'ID', 'DLC', 'DATA', 'CRC', 'ACK', 'EOF'], ti = 3;
+    setInterval(function () { if (touched) return; ti = (ti + 1) % tour.length; show(tour[ti]); }, 2600);
+  }
+
+  draw();
+  var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(draw, 150); });
+})();
+</script>
+
+</body>
+</html>
